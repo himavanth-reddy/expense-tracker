@@ -9,12 +9,9 @@ const Sidebar = () => {
       </div>
       <div className="menu-items">
         <p>Dashboard</p>
-        <p>Analytics</p>
         <p>Calendar</p>
         <p>Support</p>
-        <p>Settings</p>
       </div>
-
       <div className="logout-button">Log out</div>
     </div>
   );

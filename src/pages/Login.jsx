@@ -3,7 +3,7 @@ import { Account, ID } from "appwrite";
 import client from "../config/appwrite";
 import "../styles/login.scss";
 import Carousal from "./Carousal";
-
+import { Link } from "react-router-dom";
 const Login = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -50,7 +50,7 @@ const Login = () => {
                 setPassword(e.target.value);
                 setFormValid(!!e.target.value && !!email);
               }}
-              placeholder="Enter assword"
+              placeholder="Enter password"
               required
             />
             <button type="submit" onClick={handleSignup} disabled={!formValid}>
@@ -64,8 +64,15 @@ const Login = () => {
         ) : (
           <p className="error"></p>
         )}
-        <p>Join us. Sign up.</p>
+        <p>
+          Join us.
+          <Link to="/signup">
+            <button>Signup</button>
+          </Link>
+          .
+        </p>
       </div>
+      
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { Account, ID } from "appwrite";
 import client from "../config/appwrite";
 import "../styles/signup.scss";
 import Carousal from "./Carousal";
-
+import { Link } from "react-router-dom";
 const Signup = () => {
   const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
@@ -106,7 +106,12 @@ const Signup = () => {
           <p className="error"></p>
         )}
         {console.log(passwordCheck)}
-        <p>Already have an account Login</p>
+        <p>
+          Already have an account{" "}
+          <Link to="/login">
+            <button>Login</button>
+          </Link>
+        </p>
       </div>
     </div>
   );

@@ -53,7 +53,7 @@ const Carousal = () => {
       } else {
         setCurrentIndex(0);
       }
-    }, 3000);
+    }, 2000);
     return () => clearInterval(intervalId);
   }, [currentIndex]);
 

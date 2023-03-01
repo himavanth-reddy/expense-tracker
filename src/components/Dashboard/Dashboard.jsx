@@ -1,35 +1,24 @@
-const date = new Date();
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import DashboardChart from "./DashboardChart";
+
 import ArrowCircleUpRoundedIcon from "@mui/icons-material/ArrowCircleUpRounded";
 import ArrowCircleDownRoundedIcon from "@mui/icons-material/ArrowCircleDownRounded";
-const Dashboard = () => {
-  const [date, setDate] = useState(new Date());
-  const formatedDate = date.toLocaleString("en-IN", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  });
-  useEffect(() => {
-    const timerId = setInterval(() => {
-      setDate(new Date());
-    }, 1000);
-    return () => {
-      clearInterval(timerId);
-    };
-  }, []);
 
+const Dashboard = ({ transactions, setRefDate }) => {
+  let totalSpends = transactions.reduce((a, transaction) => {
+    if (transaction.type == "expense") {
+      return a + transaction.amount;
+    } else {
+      return a + 0;
+    }
+  }, 0);
   return (
     <div className="dashboard-wrapper">
       <div className="header">
         <div>
-          <h1>Dashboard</h1>
-          <p>{formatedDate}</p>
+          <h2>Dashboard</h2>
         </div>
-        <button>Log finances</button>
+        {/* <button>Log finances</button> */}
       </div>
       <div className="balance-overview" id="balance">
         <p>Your balance:</p>
@@ -37,35 +26,106 @@ const Dashboard = () => {
       </div>
       <div className="transactions-overview">
         <div className="time-period-container">
-          <select name="time-period" id="time-period" className="time-period">
-            <option value="Today">Today</option>
-            <option value="This week">This week</option>
-            <option value="Last week">Last Week</option>
-            <option value="This month">This month</option>
-            <option value="Last month">Last month</option>
+          <select
+            name="time-period"
+            id="time-period"
+            className="time-period"
+            onChange={(event) => {
+              setRefDate(event.target.value);
+            }}
+          >
+            <option value={1}>Today</option>
+            <option value={7}>This week</option>
+            <option value={30}>This month</option>
           </select>
           <div className="total-transactions">
             <p>Transactions</p>
-            <p>48</p>
+            <p>{transactions.length}</p>
           </div>
           <div>
             <p>Total spends</p>
-            <p>$1245.30</p>
+            <p>${totalSpends}</p>
           </div>
         </div>
 
         <div className="category-container">
           <div className="category">
             <p>Food</p>
-            <p>$138.56</p>
+            <p>
+              $
+              {transactions.reduce((a, transaction) => {
+                if (transaction.category == "Food") {
+                  return a + transaction.amount;
+                } else {
+                  return a + 0;
+                }
+              }, 0)}
+            </p>
           </div>
           <div className="category">
-            <p>Health and Care</p>
-            <p>$118.56</p>
+            <p>Housing</p>
+            <p>
+              $
+              {transactions.reduce((a, transaction) => {
+                if (transaction.category == "Housing") {
+                  return a + transaction.amount;
+                } else {
+                  return a + 0;
+                }
+              }, 0)}
+            </p>
           </div>
           <div className="category">
-            <p>Shopping</p>
-            <p>$118.56</p>
+            <p>Housing</p>
+            <p>
+              $
+              {transactions.reduce((a, transaction) => {
+                if (transaction.category == "Housing") {
+                  return a + transaction.amount;
+                } else {
+                  return a + 0;
+                }
+              }, 0)}
+            </p>
+          </div>
+          <div className="category">
+            <p>Transportation</p>
+            <p>
+              $
+              {transactions.reduce((a, transaction) => {
+                if (transaction.category == "Transportation") {
+                  return a + transaction.amount;
+                } else {
+                  return a + 0;
+                }
+              }, 0)}
+            </p>
+          </div>
+          <div className="category">
+            <p>Entertainment</p>
+            <p>
+              $
+              {transactions.reduce((a, transaction) => {
+                if (transaction.category == "Entertainment") {
+                  return a + transaction.amount;
+                } else {
+                  return a + 0;
+                }
+              }, 0)}
+            </p>
+          </div>
+          <div className="category">
+            <p>Utilities</p>
+            <p>
+              $
+              {transactions.reduce((a, transaction) => {
+                if (transaction.category == "Utilities") {
+                  return a + transaction.amount;
+                } else {
+                  return a + 0;
+                }
+              }, 0)}
+            </p>
           </div>
         </div>
         <div className="chart-overview">
@@ -80,8 +140,17 @@ const Dashboard = () => {
                 </div>
 
                 <div>
-                  <p>Revenue</p>
-                  <p>$10,567</p>
+                  <p>Expense</p>
+                  <p>
+                    $
+                    {transactions.reduce((a, transaction) => {
+                      if (transaction.type == "expense") {
+                        return a + transaction.amount;
+                      } else {
+                        return a + 0;
+                      }
+                    }, 0)}
+                  </p>
                 </div>
               </div>
 
@@ -91,13 +160,22 @@ const Dashboard = () => {
                 </div>
 
                 <div>
-                  <p>Expense</p>
-                  <p>$11,567</p>
+                  <p>Revenue</p>
+                  <p>
+                    $
+                    {transactions.reduce((a, transaction) => {
+                      if (transaction.type == "revenue") {
+                        return a + transaction.amount;
+                      } else {
+                        return a + 0;
+                      }
+                    }, 0)}
+                  </p>
                 </div>
               </div>
             </div>
             <div className="chart">
-              <DashboardChart />
+              <DashboardChart transactions={transactions} />
             </div>
           </div>
         </div>

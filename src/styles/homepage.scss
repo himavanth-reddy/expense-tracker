@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  //justify-content: space-between;
   .sidebar-wrapper {
     flex: 1.25;
     background-color: #070707e8;
@@ -39,7 +39,7 @@
       margin-left: 30px;
       flex-direction: column;
       height: 30%;
-      justify-content: space-between;
+      gap: 10%;
       p {
         width: max-content;
       }
@@ -62,7 +62,8 @@
       flex-direction: row;
       justify-content: space-between;
       margin-bottom: 5vh;
-      h1,
+      align-items: center;
+      h2,
       p,
       button {
         margin-top: 10px;
@@ -146,15 +147,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            .Expense-info {
-              display: flex;
-              flex-direction: row;
-              gap: 10px;
-              .Expense-Arrow {
-                font-size: 30px;
-                color: rgba(183, 220, 231, 1);
-              }
-            }
             .Revenue-info {
               display: flex;
               flex-direction: row;
@@ -162,6 +154,15 @@
               .Revenue-Arrow {
                 font-size: 30px;
                 color: #070707;
+              }
+            }
+            .Expense-info {
+              display: flex;
+              flex-direction: row;
+              gap: 10px;
+              .Expense-Arrow {
+                font-size: 30px;
+                color: rgba(183, 220, 231, 1);
               }
             }
           }
@@ -177,7 +178,99 @@
   }
   .transactions-wrapper {
     flex: 2;
-    border-left: 1px solid #efefef;
+
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+
+    .header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-left: 1rem;
+      margin-top: 1rem;
+      align-items: center;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      // button {
+      //   height: 2rem;
+      //   background-color: #ffffff;
+      //   width: 4rem;
+      // }
+      // button:hover {
+      //   width: 4rem;
+
+      //   border: #070707 solid 1px;
+      //   border-radius: 10px;
+      // }
+    }
+    .transactions-selector {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-left: 1rem;
+      button {
+        flex: 1;
+        height: 2rem;
+        background-color: #ffffff;
+        width: max-content;
+        border-bottom: #070707 solid 1px;
+      }
+      // button:hover {
+      //   width: max-content;
+      //   height: 2rem;
+
+      //   border-top: #070707 solid 1px;
+      //   border-right: #070707 solid 1px;
+      //   border-left: #070707 solid 1px;
+      //   border-bottom: #ffffff solid 1px;
+      //   border-radius: 10px 10px 0px 0px;
+      // }
+      .active {
+        width: max-content;
+        height: 2rem;
+        border-top: #070707 solid 1px;
+        border-right: #070707 solid 1px;
+        border-left: #070707 solid 1px;
+        border-bottom: #ffffff solid 1px;
+        border-radius: 10px 10px 0px 0px;
+      }
+    }
+
+    .transactions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5vh;
+      max-height: 100vh;
+      overflow-y: scroll;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      .transaction-overview {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: start;
+        .transaction-icon {
+          flex: 1;
+        }
+        .transaction {
+          flex: 4;
+        }
+        .revenue {
+          flex: 2;
+          color: #00d100;
+          font-weight: bold;
+        }
+        .expense {
+          flex: 2;
+          color: #ff0000;
+          font-weight: bold;
+        }
+      }
+    }
+    .transactions-list::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
