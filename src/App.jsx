@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Index from "./pages";
+import Index from "./pages/Index";
 
 function App() {
   return (
